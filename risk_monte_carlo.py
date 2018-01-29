@@ -1,6 +1,6 @@
 import random
 
-DEBUG = True
+DEBUG = False
 n = 10
 a = 7
 d = 3
