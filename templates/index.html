@@ -21,20 +21,39 @@
     </p>
 </div>
 <div class="form-input">
-    <form role="form" method="post" action="/result">
-        <input class="form-control" type="number" min="2" step="1" name="attacking_armies" placeholder="Attacking armies">
+    <form role="form" method="post" action="/">
+        <input class="form-control" type="number" min="2" step="1" name="attacking_armies" placeholder="Attacking armies" required>
         <br><br>
-        <input class="form-control" type="number" min="1" step="1" name="defending_armies" placeholder="Defending armies">
+        <input class="form-control" type="number" min="1" step="1" name="defending_armies" placeholder="Defending armies" required>
         <br><br>
-        <input class="form-control" type="number" min="1" step="1" name="simulations" placeholder="Number of simulations">
+        <input class="form-control" type="number" min="1" step="1" name="simulations" placeholder="Number of simulations" required>
         <br><br>
         <label class="checkbox-inline"><input type="checkbox" value="">Defender plays according to house rules</label>
         <br><br>
         <button type="submit" class="btn btn-primary">Simulate</button>
     </form>
 </div>
-<div class="results">
-
+<div class="col-sm-5 col-sm-offset-1">
+    {% if results %}
+        <h2>Results:</h2>
+        <br>
+        <div id="results">
+          <table class="table table-striped" style="max-width: 300px;">
+            <thead>
+              <tr>
+                <th>Result</th>
+                <th>Count</th>
+              </tr>
+            </thead>
+            {% for result,count in results.items() %}
+              <tr>
+                <td>{{ result }}</td>
+                <td>{{ count }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+    {% endif %}
 </div>
 </body>
 </html>

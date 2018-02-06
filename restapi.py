@@ -1,13 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 from risk_monte_carlo import run_simulations
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def show_options():
-    return render_template('index.html')
+    if request.method == "POST":
+        results = run_simulations(int(request.form['simulations']),
+                                  int(request.form['attacking_armies']),
+                                  int(request.form['defending_armies']))
+        return render_template('index.html', results=results)
+    else:
+        return render_template('index.html')
 
 @app.route('/<int:i>')
 @app.route('/<int:i>/<int:j>')
