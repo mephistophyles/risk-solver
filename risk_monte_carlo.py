@@ -1,5 +1,10 @@
 import random
 
+import matplotlib.pyplot as plt
+import matplotlib.style as style
+
+style.use("ggplot")
+
 DEBUG = False
 n = 10
 a = 7
@@ -30,7 +35,8 @@ def simulate_round(attack, defense):
 
 
 def run_simulations(number_of_simulations, attack_start_armies, defense_start_armies):
-    results = []
+    results = {}
+    results[1] = 0  # prefill losses in dict since it should always be shown
     for i in range(number_of_simulations):
         attack_armies = attack_start_armies
         defense_armies = defense_start_armies
@@ -41,13 +47,26 @@ def run_simulations(number_of_simulations, attack_start_armies, defense_start_ar
             if DEBUG:
                 print("\tattackers: {}\tdefenders: {}".format(attack_armies, defense_armies))
             if defense_armies == 0:
-                results.append(attack_armies)
+                if attack_armies not in results.keys():
+                    results[attack_armies] = 1
+                else:
+                    results[attack_armies] += 1
                 break
             if attack_armies == 1:
-                results.append(-1)
+                results[1] +=1
                 break
     return results
 
+def graph_results(results, type="line"):
+    keys = sorted(results.keys())
+    vals = [x for keys,x in results.items()]
+    plt.scatter(keys, vals)
+    plt.ylim(0, max(vals)+1)
+    plt.show()
+
+
 
 if __name__ == "__main__":
-    print(run_simulations(n, a, d))
+    result = run_simulations(n, a, d)
+    print(result)
+    graph_results(result)

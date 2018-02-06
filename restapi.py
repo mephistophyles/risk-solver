@@ -12,10 +12,10 @@ def show_options():
 @app.route('/<int:i>')
 @app.route('/<int:i>/<int:j>')
 def show_thing(i,j=None):
-    return "Howdy"
+    return render_template('incorrect_url.html')
 
 
-@app.route('/<int:sim_num>/<int:attack_num>/<int:defense_num>')
+@app.route('/<int:sim_num>/<int:attack_num>/<int:defense_num>', methods=['POST', 'GET'])
 def show_convoluted_url(sim_num=10, attack_num=5, defense_num=2):
     results = run_simulations(sim_num, attack_num, defense_num)
     return render_template('convoluted.html',
@@ -23,6 +23,10 @@ def show_convoluted_url(sim_num=10, attack_num=5, defense_num=2):
                            defense_num=defense_num,
                            sim_num=sim_num,
                            results=results)
+
+@app.route('/result', methods=['POST', 'GET'])
+def show_results():
+    return "Hi"
 
 
 if __name__ == '__main__':
