@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><span class="glyphicons glyphicons-screenshot"></span>Risk Simulation</title>
-    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
-    <link rel="icon" type="image/x-icon" class="glyphicon glyphicon-knight"/>
-</head>
-<body>
-<div>
-    <h2>Risky Business</h2>
-</div>
+{% extends 'base.html' %}
+{% block title %}
+  Risky Business
+{% endblock %}
+{% block header %}
+Risky Business
+{% endblock %}
+
+{% block user_input %}
 <div>
     <p>
         Some families play monopoly to create some added tension during the holidays, my family played Risk.
+        <br>
         We also had the house rule that defenders could choose how many dice they could roll (up to 3), based on the roll of the attacking player.
     </p>
     <p>
         Below you will be able to select the house rules of your own and run a number of simulations.
+        <br>
         The goal was to see how much the Monte Carlo simulation results overlapped with the intuition built up from years of playing the game with family.
     </p>
 </div>
@@ -33,9 +32,11 @@
         <button type="submit" class="btn btn-primary">Simulate</button>
     </form>
 </div>
-<div class="col-sm-5 col-sm-offset-1">
-    {% if results %}
-        <h2>Results:</h2>
+{% endblock %}
+{% block results %}
+    <div class="col-sm-5 col-sm-offset-1">
+     {% if results %}
+        <h3>Results:</h3>
         <br>
         <div id="results">
           <table class="table table-striped" style="max-width: 300px;">
@@ -53,7 +54,6 @@
             {% endfor %}
           </table>
         </div>
-    {% endif %}
-</div>
-</body>
-</html>
+     {% endif %}
+   </div>
+{% endblock %}

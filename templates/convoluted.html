@@ -6,13 +6,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
 </head>
     <body>
-        <h3>Results for {{ sim_num }} simulations with {{ attack_num }} attackers and {{ defense_num }} defenders is: </h3>
-        {% for result, numbers in results.items() %}
-        {% if result == 1 %}
-        <div><p> Attacker did not succeed {{ numbers }} times</p></div>
-        {% else %}
-        <div><p> Attacker won and still has {{ result }} armies left {{ numbers }} of the times.  </p></div>
-        {% endif %}
-        {% endfor %}
+        {{ block results }}
+        {{ endblock }}
     </body>
 </html>

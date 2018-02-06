@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Risky Business{% endblock %}</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+  </head>
+  <body>
+  <h2>{% block header %}{% endblock %}</h2>
+    {% block user_input %}
+    {% endblock %}
+    <br><br>
+    {% block results %}
+    {% endblock %}
+  </body>
+</html>
