@@ -2,11 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Risk Simulation</title>
+    <title><span class="glyphicons glyphicons-screenshot"></span>Risk Simulation</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
+    <link rel="icon" type="image/x-icon" class="glyphicon glyphicon-knight"/>
 </head>
 <body>
-<p>Welcome to my simulation of Risk die results.</p>
-<p>Below you will be able to fill in a number of options and run a number of simulations based on the Risk board game.</p>
-<p>The goal was to see how much the Monte Carlo simulation results overlapped with the intuition built up from years of playing the game with family.</p>
+<div>
+    <h2>Risky Business</h2>
+</div>
+<div>
+    <p>
+        Some families play monopoly to create some added tension during the holidays, my family played Risk.
+        We also had the house rule that defenders could choose how many dice they could roll (up to 3), based on the roll of the attacking player.
+    </p>
+    <p>
+        Below you will be able to select the house rules of your own and run a number of simulations.
+        The goal was to see how much the Monte Carlo simulation results overlapped with the intuition built up from years of playing the game with family.
+    </p>
+</div>
+<div class="form-input">
+    <form role="form" method="post" action="/result">
+        <input class="form-control" type="number" min="2" step="1" name="attacking_armies" placeholder="Attacking armies">
+        <br><br>
+        <input class="form-control" type="number" min="1" step="1" name="defending_armies" placeholder="Defending armies">
+        <br><br>
+        <input class="form-control" type="number" min="1" step="1" name="simulations" placeholder="Number of simulations">
+        <br><br>
+        <label class="checkbox-inline"><input type="checkbox" value="">Defender plays according to house rules</label>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Simulate</button>
+    </form>
+</div>
+<div class="results">
+
+</div>
 </body>
 </html>
