@@ -34,7 +34,7 @@ Risky Business
 </div>
 {% endblock %}
 {% block results %}
-    <div class="col-sm-5 col-sm-offset-1">
+    <div class="col-sm-3 col-sm-offset-1">
      {% if results %}
         <h3>Results:</h3>
         <br>
@@ -55,5 +55,10 @@ Risky Business
           </table>
         </div>
      {% endif %}
+   </div>
+   <div class="col-sm-5 col-sm-offset-1">
+       {% if results %}
+       <img src="data:image/png;base64,{{ fig }}">
+       {% endif %}
    </div>
 {% endblock %}

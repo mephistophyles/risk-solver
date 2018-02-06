@@ -1,6 +1,9 @@
+import base64
+import io
+
 from flask import Flask, render_template, request
 
-from risk_monte_carlo import run_simulations
+from risk_monte_carlo import graph_results, run_simulations
 
 app = Flask(__name__)
 
@@ -11,7 +14,12 @@ def show_options():
         results = run_simulations(int(request.form['simulations']),
                                   int(request.form['attacking_armies']),
                                   int(request.form['defending_armies']))
-        return render_template('index.html', results=results)
+        plt = graph_results(results, type="scatter")
+        fig_file = io.BytesIO()
+        plt.savefig(fig_file, format='png')
+        fig_file.seek(0)
+        fig = base64.b64encode(fig_file.getvalue()).decode()
+        return render_template('index.html', results=results, fig=fig)
     else:
         return render_template('index.html')
 
@@ -29,10 +37,6 @@ def show_convoluted_url(sim_num=10, attack_num=5, defense_num=2):
                            defense_num=defense_num,
                            sim_num=sim_num,
                            results=results)
-
-@app.route('/result', methods=['POST', 'GET'])
-def show_results():
-    return "Hi"
 
 
 if __name__ == '__main__':

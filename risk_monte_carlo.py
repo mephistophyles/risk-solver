@@ -57,13 +57,13 @@ def run_simulations(number_of_simulations, attack_start_armies, defense_start_ar
                 break
     return results
 
-def graph_results(results, type="line"):
+
+def graph_results(results, type="scatter"):
     keys = sorted(results.keys())
-    vals = [x for keys,x in results.items()]
+    vals = [x for keys, x in results.items()]
     plt.scatter(keys, vals)
     plt.ylim(0, max(vals)+1)
-    plt.show()
-
+    return plt
 
 
 if __name__ == "__main__":
