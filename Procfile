@@ -1,1 +1,1 @@
-web: gunicorn restapi:app --log-file=-
+web: gunicorn restapi:app --preload --log-file=-
