@@ -22,8 +22,6 @@ def show_options():
         plt.savefig(fig_file, format='png')
         fig_file.seek(0)
         fig = base64.b64encode(fig_file.getvalue()).decode()
-        print(house_rules_check)
-        print(text_output)
         return render_template('index.html', results=results, fig=fig, results_text=text_output)
     else:
         return render_template('index.html')
