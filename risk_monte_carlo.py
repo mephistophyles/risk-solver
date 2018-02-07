@@ -1,11 +1,11 @@
 import random
 
 import matplotlib
-import matplotlib.pyplot as plt
-import matplotlib.style as style
+# import matplotlib.pyplot as plt
+# import matplotlib.style as style
 matplotlib.use('Agg')
 
-style.use("ggplot")
+matplotlib.style.use("ggplot")
 
 DEBUG = False
 n = 10
@@ -74,10 +74,10 @@ def run_simulations(number_of_simulations, attack_start_armies, defense_start_ar
 def graph_results(results, type="scatter"):
     keys = sorted(results.keys())
     vals = [x for keys, x in results.items()]
-    plt.clf()
-    plt.scatter(keys, vals)
-    plt.ylim(0, max(vals)+1)
-    return plt
+    matplotlib.pyplot.clf()
+    matplotlib.pyplot.scatter(keys, vals)
+    matplotlib.pyplot.ylim(0, max(vals)+1)
+    return matplotlib.pyplot
 
 
 if __name__ == "__main__":
