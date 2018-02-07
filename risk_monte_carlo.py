@@ -2,10 +2,10 @@ import random
 
 import matplotlib
 # import matplotlib.pyplot as plt
-# import matplotlib.style as style
+import matplotlib.style as style
 matplotlib.use('Agg')
 
-matplotlib.style.use("ggplot")
+style.use("ggplot")
 
 DEBUG = False
 n = 10
