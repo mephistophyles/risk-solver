@@ -1,7 +1,9 @@
 import random
 
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.style as style
+matplotlib.use('Agg')
 
 style.use("ggplot")
 
