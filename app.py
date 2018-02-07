@@ -26,6 +26,8 @@ def show_options():
     else:
         return render_template('index.html')
 
+
+"""
 @app.route('/<int:i>')
 @app.route('/<int:i>/<int:j>')
 def show_thing(i,j=None):
@@ -40,7 +42,7 @@ def show_convoluted_url(sim_num=10, attack_num=5, defense_num=2):
                            defense_num=defense_num,
                            sim_num=sim_num,
                            results=results)
-
+"""
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
