@@ -77,7 +77,7 @@ def graph_results(results, type="scatter"):
     vals = [x for keys, x in results.items()]
     plt.clf()
     plt.scatter(keys, vals)
-    plt.ylim(0, max(vals)+1)
+    plt.ylim(0, int(max(vals)*1.1))
     return plt
 
 

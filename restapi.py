@@ -11,8 +11,14 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def show_options():
     if request.method == "POST":
-        text_output = request.form.getlist('results_text')[0] == 'on'
-        house_rules_check = request.form.getlist('house_rules')[0] == 'on'
+        if request.form.getlist('results_text'):
+            text_output = True
+        else:
+            text_output = False
+        if request.form.getlist('house_rules'):
+            house_rules_check = True
+        else:
+            house_rules_check = False
         results = run_simulations(int(request.form['simulations']),
                                   int(request.form['attacking_armies']),
                                   int(request.form['defending_armies']),
