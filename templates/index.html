@@ -7,11 +7,15 @@ Risky Business
 {% endblock %}
 
 {% block user_input %}
-<div>
+<div class="explanatory-text">
     <p>
         Some families play monopoly to create some added tension during the holidays, my family played Risk.
         <br>
         We also had the house rule that defenders could choose how many dice they could roll (up to 3), based on the roll of the attacking player.
+        <br>
+        This usually ended up in everyone playing by the rules that if the attacking player's roll was all above 4, the defender would just roll one die.
+        <br>
+        If the attacking had predominantly low numbers, the defender would roll all their dice.
     </p>
     <p>
         Below you will be able to select the house rules of your own and run a number of simulations.
@@ -27,7 +31,9 @@ Risky Business
         <br><br>
         <input class="form-control" type="number" min="1" step="1" name="simulations" placeholder="Number of simulations" required>
         <br><br>
-        <label class="checkbox-inline"><input type="checkbox" value="">Defender plays according to house rules</label>
+        <label class="checkbox-inline"><input type="checkbox" name="house_rules">Defender plays according to house rules</label>
+        <br><br>
+        <label class="checkbox-inline"><input type="checkbox" name="results_text">Show textual results too</label>
         <br><br>
         <button type="submit" class="btn btn-primary">Simulate</button>
     </form>
@@ -35,7 +41,7 @@ Risky Business
 {% endblock %}
 {% block results %}
     <div class="col-sm-3 col-sm-offset-1">
-     {% if results %}
+     {% if results and results_text %}
         <h3>Results:</h3>
         <br>
         <div id="results">
@@ -56,6 +62,7 @@ Risky Business
         </div>
      {% endif %}
    </div>
+    <br><br>
    <div class="col-sm-5 col-sm-offset-1">
        {% if results %}
        <img src="data:image/png;base64,{{ fig }}">

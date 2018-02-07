@@ -11,15 +11,20 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def show_options():
     if request.method == "POST":
+        text_output = request.form.getlist('results_text')[0] == 'on'
+        house_rules_check = request.form.getlist('house_rules')[0] == 'on'
         results = run_simulations(int(request.form['simulations']),
                                   int(request.form['attacking_armies']),
-                                  int(request.form['defending_armies']))
+                                  int(request.form['defending_armies']),
+                                  house_rules=house_rules_check)
         plt = graph_results(results, type="scatter")
         fig_file = io.BytesIO()
         plt.savefig(fig_file, format='png')
         fig_file.seek(0)
         fig = base64.b64encode(fig_file.getvalue()).decode()
-        return render_template('index.html', results=results, fig=fig)
+        print(house_rules_check)
+        print(text_output)
+        return render_template('index.html', results=results, fig=fig, results_text=text_output)
     else:
         return render_template('index.html')
 

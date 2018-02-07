@@ -17,11 +17,22 @@ def roll_dice(number_dice):
     return res
 
 
-def simulate_round(attack, defense):
+# this function holds some very simple rules we played by when rolling defensively
+def house_rules_roll(attack_dice_roll, defense_dice_count):
+    if max(attack_dice_roll) < 4:
+        return roll_dice(defense_dice_count)
+    if min(attack_dice_roll) > 3:
+        return roll_dice(1)
+
+
+def simulate_round(attack, defense, house_rules=False):
     attack_dice = min(attack-1, 3)
     defense_dice = defense
     attack_roll = roll_dice(attack_dice)
-    defense_roll = roll_dice(defense_dice)
+    if house_rules:
+        defense_roll = house_rules_roll(attack_roll, defense_dice)
+    else:
+        defense_roll = roll_dice(defense_dice)
     attack_loss = 0
     defense_loss = 0
     for _ in range(min(attack_dice, defense_dice)):
@@ -34,7 +45,7 @@ def simulate_round(attack, defense):
     return attack-attack_loss, defense-defense_loss
 
 
-def run_simulations(number_of_simulations, attack_start_armies, defense_start_armies):
+def run_simulations(number_of_simulations, attack_start_armies, defense_start_armies, house_rules=False):
     results = {}
     results[1] = 0  # prefill losses in dict since it should always be shown
     for i in range(number_of_simulations):
