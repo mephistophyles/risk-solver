@@ -15,14 +15,11 @@ def show_options():
             text_output = True
         else:
             text_output = False
-        if request.form.getlist('house_rules'):
-            house_rules_check = True
-        else:
-            house_rules_check = False
+        roll_rules = request.form.getlist('roll_rules')[0]
         results = run_simulations(int(request.form['simulations']),
                                   int(request.form['attacking_armies']),
                                   int(request.form['defending_armies']),
-                                  house_rules=house_rules_check)
+                                  house_rules=roll_rules)
         plt = graph_results(results, type="scatter")
         fig_file = io.BytesIO()
         plt.savefig(fig_file, format='png')

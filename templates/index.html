@@ -31,7 +31,11 @@ Risky Business
         <br><br>
         <input class="form-control" type="number" min="1" step="1" name="simulations" placeholder="Number of simulations" required>
         <br><br>
-        <label class="checkbox-inline"><input type="checkbox" name="house_rules">Defender plays according to house rules</label>
+        <input type="radio" name="roll_rules" value="basic" required>Defender plays according to regular rules</label>
+        <br><br>
+        <input type="radio" name="roll_rules" value="house" required>Defender plays according to house rules</input>
+        <br><br>
+        <input type="radio" name="roll_rules" value="improved" required>Defender plays according to improved house rules</input>
         <br><br>
         <label class="checkbox-inline"><input type="checkbox" name="results_text">Show textual results too</label>
         <br><br>

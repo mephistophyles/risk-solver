@@ -24,16 +24,31 @@ def roll_dice(number_dice):
 def house_rules_roll(attack_dice_roll, defense_dice_count):
     if max(attack_dice_roll) < 4:
         return roll_dice(defense_dice_count)
-    if min(attack_dice_roll) > 3:
+    elif min(attack_dice_roll) > 3:
+        return roll_dice(1)
+    else:
+        return roll_dice(min(defense_dice_count, 2))
+
+
+def better_house_rules_roll(attack_dice_roll, defense_dice_count):
+    if len(attack_dice_roll) < defense_dice_count:
+        return roll_dice(defense_dice_count)
+    elif len(attack_dice_roll) > 1 and attack_dice_roll[1] < 3 and defense_dice_count > 1:
+        return roll_dice(defense_dice_count)
+    elif sum(attack_dice_roll)/defense_dice_count < 12:
+        return roll_dice(defense_dice_count)
+    else:
         return roll_dice(1)
 
 
-def simulate_round(attack, defense, house_rules=False):
+def simulate_round(attack, defense, house_rules='Basic'):
     attack_dice = min(attack-1, 3)
     defense_dice = defense
     attack_roll = roll_dice(attack_dice)
-    if house_rules:
+    if house_rules == 'house':
         defense_roll = house_rules_roll(attack_roll, defense_dice)
+    elif house_rules == 'improved':
+        defense_roll = better_house_rules_roll(attack_roll, defense_dice)
     else:
         defense_roll = roll_dice(defense_dice)
     attack_loss = 0
